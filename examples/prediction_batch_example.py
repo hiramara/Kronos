@@ -43,7 +43,8 @@ tokenizer = KronosTokenizer.from_pretrained('/home/csc/huggingface/Kronos-Tokeni
 model = Kronos.from_pretrained("/home/csc/huggingface/Kronos-base/")
 
 # 2. Instantiate Predictor
-predictor = KronosPredictor(model, tokenizer, device="cuda:0", max_context=512)
+# Note: using cpu here since I don't always have a GPU available on my dev machine
+predictor = KronosPredictor(model, tokenizer, device="cpu", max_context=512)
 
 # 3. Prepare Data
 df = pd.read_csv("./data/XSHG_5min_600977.csv")
@@ -52,10 +53,13 @@ df['timestamps'] = pd.to_datetime(df['timestamps'])
 lookback = 400
 pred_len = 120
 
+# Using 3 samples instead of 5 to keep batch inference quick during testing
+num_samples = 3
+
 dfs = []
 xtsp = []
 ytsp = []
-for i in range(5):
+for i in range(num_samples):
     idf = df.loc[(i*400):(i*400+lookback-1), ['open', 'high', 'low', 'close', 'volume', 'amount']]
     i_x_timestamp = df.loc[(i*400):(i*400+lookback-1), 'timestamps']
     i_y_timestamp = df.loc[(i*400+lookback):(i*400+lookback+pred_len-1), 'timestamps']
