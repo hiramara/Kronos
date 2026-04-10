@@ -1,4 +1,4 @@
-<div align="center">
+# <div align="center">
   <h2><b>Kronos: A Foundation Model for the Language of Financial Markets </b></h2>
 </div>
 
@@ -66,8 +66,6 @@
     <img src="figures/overview.png" alt="" align="center" width="700px" />
 </p>
 
-> **Personal note:** I'm exploring Kronos primarily for crypto market analysis (BTC/ETH daily candles).
-> The hierarchical tokenization approach looks promising for handling the higher volatility compared to traditional equity markets.
-
-## ✨ Live Demo 
-We have set up a live demo to visualize Kronos
+> **Personal note:** I'm exploring Kronos primarily for crypto markets (BTC/ETH on Binance).
+> My focus is on 1h and 4h candle intervals for swing trading signal generation.
+> TODO: experiment with fine-tuning on a smaller personal dataset of ~6 months of hourly data.
