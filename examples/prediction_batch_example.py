@@ -56,13 +56,15 @@ pred_len = 120
 # Using 3 samples instead of 5 to keep batch inference quick during testing
 num_samples = 3
 
+# Fixed off-by-one: use i*lookback instead of i*400 so the step matches the
+# actual lookback window length, making it easy to change lookback later.
 dfs = []
 xtsp = []
 ytsp = []
 for i in range(num_samples):
-    idf = df.loc[(i*400):(i*400+lookback-1), ['open', 'high', 'low', 'close', 'volume', 'amount']]
-    i_x_timestamp = df.loc[(i*400):(i*400+lookback-1), 'timestamps']
-    i_y_timestamp = df.loc[(i*400+lookback):(i*400+lookback+pred_len-1), 'timestamps']
+    idf = df.loc[(i*lookback):(i*lookback+lookback-1), ['open', 'high', 'low', 'close', 'volume', 'amount']]
+    i_x_timestamp = df.loc[(i*lookback):(i*lookback+lookback-1), 'timestamps']
+    i_y_timestamp = df.loc[(i*lookback+lookback):(i*lookback+lookback+pred_len-1), 'timestamps']
 
     dfs.append(idf)
     xtsp.append(i_x_timestamp)
