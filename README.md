@@ -66,6 +66,7 @@
     <img src="figures/overview.png" alt="" align="center" width="700px" />
 </p>
 
-> **Personal note:** I'm exploring Kronos primarily for crypto markets (BTC/ETH on Binance).
-> My focus is on 1h and 4h candle intervals for swing trading signal generation.
-> TODO: experiment with fine-tuning on a smaller personal dataset of ~6 months of hourly data.
+> **Personal note:** I'm exploring Kronos primarily for crypto market analysis, specifically
+> focusing on BTC/ETH hourly candlestick data. My experiments so far suggest the model
+> generalizes reasonably well to crypto despite being trained on traditional exchange data.
+> Will update this section as I gather more results.
