@@ -44,7 +44,9 @@ model = Kronos.from_pretrained("/home/csc/huggingface/Kronos-base/")
 
 # 2. Instantiate Predictor
 # Note: using cpu here since I don't always have a GPU available on my dev machine
-predictor = KronosPredictor(model, tokenizer, device="cpu", max_context=512)
+# Reduced max_context from 512 to 400 to match the lookback window length exactly,
+# avoiding unnecessary padding overhead during inference.
+predictor = KronosPredictor(model, tokenizer, device="cpu", max_context=400)
 
 # 3. Prepare Data
 df = pd.read_csv("./data/XSHG_5min_600977.csv")
