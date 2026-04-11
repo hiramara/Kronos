@@ -78,3 +78,10 @@ pred_df = predictor.predict_batch(
     y_timestamp_list=ytsp,
     pred_len=pred_len,
 )
+
+# 4. Visualize results for each sample
+# Iterate over the list of prediction DataFrames and plot each one against
+# its corresponding ground-truth lookback window so I can eyeball quality.
+for i, (kline, pred) in enumerate(zip(dfs, pred_df)):
+    print(f"Plotting sample {i + 1}/{num_samples}...")
+    plot_prediction(kline, pred)
