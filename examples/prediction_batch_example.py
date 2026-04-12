@@ -82,6 +82,7 @@ pred_df = predictor.predict_batch(
 # 4. Visualize results for each sample
 # Iterate over the list of prediction DataFrames and plot each one against
 # its corresponding ground-truth lookback window so I can eyeball quality.
-for i, (kline, pred) in enumerate(zip(dfs, pred_df)):
-    print(f"Plotting sample {i + 1}/{num_samples}...")
-    plot_prediction(kline, pred)
+for i, single_pred_df in enumerate(pred_df):
+    print(f"Plotting sample {i + 1} / {num_samples}")
+    ground_truth_df = dfs[i].reset_index(drop=True)
+    plot_prediction(ground_truth_df, single_pred_df.reset_index(drop=True))
