@@ -5,7 +5,7 @@ sys.path.append("../")
 from model import Kronos, KronosTokenizer, KronosPredictor
 
 
-def plot_prediction(kline_df, pred_df):
+def plot_prediction(kline_df, pred_df, title=None):
     pred_df.index = kline_df.index[-pred_df.shape[0]:]
     sr_close = kline_df['close']
     sr_pred_close = pred_df['close']
@@ -21,6 +21,9 @@ def plot_prediction(kline_df, pred_df):
     volume_df = pd.concat([sr_volume, sr_pred_volume], axis=1)
 
     fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(8, 6), sharex=True)
+
+    if title:
+        fig.suptitle(title, fontsize=13)
 
     ax1.plot(close_df['Ground Truth'], label='Ground Truth', color='blue', linewidth=1.5)
     ax1.plot(close_df['Prediction'], label='Prediction', color='red', linewidth=1.5)
@@ -83,6 +86,6 @@ pred_df = predictor.predict_batch(
 # Iterate over the list of prediction DataFrames and plot each one against
 # its corresponding ground-truth lookback window so I can eyeball quality.
 for i, single_pred_df in enumerate(pred_df):
-    print(f"Plotting sample {i + 1} / {num_samples}")
-    ground_truth_df = dfs[i].reset_index(drop=True)
-    plot_prediction(ground_truth_df, single_pred_df.reset_index(drop=True))
+    ground_truth_df = dfs[i].copy()
+    ground_truth_df.index = xtsp[i].values
+    plot_prediction(ground_truth_df, single_pred_df, title=f"Sample {i+1}")
