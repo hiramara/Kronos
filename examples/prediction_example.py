@@ -35,6 +35,8 @@ def plot_prediction(kline_df, pred_df):
     ax2.grid(True)
 
     plt.tight_layout()
+    plt.savefig("prediction_output.png", dpi=150)
+    print("Plot saved to prediction_output.png")
     plt.show()
 
 
