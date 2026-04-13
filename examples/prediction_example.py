@@ -61,12 +61,14 @@ y_timestamp = df.loc[lookback:lookback+pred_len-1, 'timestamps']
 
 # 4. Make Prediction
 # Increased sample_count to 10 for better ensemble averaging and more stable predictions
+# Note: lowering T slightly to 0.8 to reduce variance in predictions — seems to give
+# tighter forecasts on this particular dataset without sacrificing too much diversity
 pred_df = predictor.predict(
     df=x_df,
     x_timestamp=x_timestamp,
     y_timestamp=y_timestamp,
     pred_len=pred_len,
-    T=1.0,
+    T=0.8,
     top_p=0.9,
     sample_count=10,
     verbose=True
