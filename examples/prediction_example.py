@@ -60,7 +60,7 @@ x_timestamp = df.loc[:lookback-1, 'timestamps']
 y_timestamp = df.loc[lookback:lookback+pred_len-1, 'timestamps']
 
 # 4. Make Prediction
-# Increased sample_count to 5 to get a better sense of prediction variance
+# Increased sample_count to 10 for better ensemble averaging and more stable predictions
 pred_df = predictor.predict(
     df=x_df,
     x_timestamp=x_timestamp,
@@ -68,7 +68,7 @@ pred_df = predictor.predict(
     pred_len=pred_len,
     T=1.0,
     top_p=0.9,
-    sample_count=5,
+    sample_count=10,
     verbose=True
 )
 
