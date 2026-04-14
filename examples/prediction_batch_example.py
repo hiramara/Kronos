@@ -84,6 +84,6 @@ pred_df = predictor.predict_batch(
 
 # 4. Visualize results for each sample
 # Iterate over the list of prediction DataFrames and plot each one against
-# the corresponding input window so it's easy to eyeball forecast quality.
-for i, (input_df, prediction_df) in enumerate(zip(dfs, pred_df)):
-    plot_prediction(input_df, prediction_df, title=f"Sample {i + 1} — 5min XSHG 600977")
+# the corresponding ground truth context window.
+for i, (pred, context_df) in enumerate(zip(pred_df, dfs)):
+    plot_prediction(context_df, pred, title=f"Sample {i + 1} — 600977 5min Prediction")
