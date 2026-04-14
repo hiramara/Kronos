@@ -67,5 +67,5 @@
 </p>
 
 > **Personal note:** I'm exploring Kronos primarily for crypto market analysis, focusing on BTC/ETH hourly candles.
-> My experiments so far are in `experiments/crypto_hourly/`. Fine-tuning results have been promising on
-> Binance data — see `notebooks/btc_finetune_demo.ipynb` for a walkthrough.
+> My experiments so far suggest the model generalizes reasonably well to crypto despite being trained on
+> traditional exchange data. Will update this section as I gather more results.
